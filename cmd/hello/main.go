@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"math/rand"
+	"os"
 )
 
 func main() {
@@ -29,6 +31,12 @@ func main() {
 	case String:
 		fmt.Println("string", v)
 	}
+	f, err := os.Open("go.mod")
+	if err != nil {
+		panic(err)
+	}
+	b, err := ioutil.ReadAll(f)
+	fmt.Print(string(b), err)
 }
 
 type Value interface{}

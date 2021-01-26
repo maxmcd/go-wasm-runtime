@@ -8,3 +8,7 @@ hello.wasm: ./cmd/hello/main.go
 
 run: hello.wasm
 	nix-shell -p gcc --run "go run ."
+
+test_exec:
+	# TODO
+	GOOS=js GOARCH=wasm go test -exec $(go env GOROOT)/misc/wasm/go_js_wasm_exec
