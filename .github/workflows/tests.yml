@@ -1,0 +1,17 @@
+name: Tests
+on: push
+jobs:
+  test-go:
+    name: test-go
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run all tests
+        run: go test -v ./...
+      - name: Run wasm
+        run: |
+          sudo apt-get install -y wabt
+          mkdir .cache && make run

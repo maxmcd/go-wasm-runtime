@@ -7,6 +7,9 @@ hello.wasm: ./cmd/hello/main.go
 	wasm-strip hello.wasm
 
 run: hello.wasm
+	go run .
+
+run_nix: hello.wasm
 	nix-shell -p gcc --run "go run ."
 
 test_exec:
